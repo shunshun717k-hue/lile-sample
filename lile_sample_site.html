@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiLe | 門真市 男性専用プライベートサロン</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:#f8f8f6;
+  color:#1a1a1a;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:300;
+  padding-bottom:80px;
+}
+
+/* 固定予約バー */
+.reserve-bar{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:9999;
+  background:#1a1a1a;
+  display:flex;
+  gap:2px;
+  padding:10px 12px;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.3);
+}
+.reserve-bar a{
+  flex:1;
+  padding:13px 4px;
+  text-align:center;
+  font-size:12px;
+  font-weight:700;
+  text-decoration:none;
+  border-radius:4px;
+  display:block;
+}
+.btn-tel{background:#2a6e3f;color:white}
+.btn-line{background:#06c755;color:white}
+.btn-web{background:#c8963e;color:white}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;z-index:100;
+  background:white;
+  border-bottom:1px solid #e8e8e8;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.nav-logo{
+  font-family:'Oswald',sans-serif;
+  font-size:22px;font-weight:600;
+  color:#1a1a1a;letter-spacing:3px;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{font-size:11px;color:#666;text-decoration:none}
+
+/* HERO */
+.hero{
+  background:#1a1a1a;
+  padding:56px 24px 56px;
+  text-align:center;
+}
+.hero-badge{
+  display:inline-block;
+  background:#c8963e;color:white;
+  font-size:10px;letter-spacing:3px;
+  padding:5px 14px;margin-bottom:20px;
+}
+.hero h1{
+  font-family:'Oswald',sans-serif;
+  font-size:64px;font-weight:600;
+  color:white;letter-spacing:6px;
+  margin-bottom:8px;
+}
+.hero-sub{
+  font-size:12px;color:rgba(255,255,255,.5);
+  letter-spacing:2px;margin-bottom:32px;
+  display:block;
+}
+.hero-stats{
+  display:flex;
+  border:1px solid rgba(255,255,255,.1);
+  max-width:340px;
+  margin:0 auto 36px;
+}
+.hero-stat{
+  flex:1;padding:16px 8px;
+  border-right:1px solid rgba(255,255,255,.1);
+  text-align:center;
+}
+.hero-stat:last-child{border-right:none}
+.stat-num{
+  font-family:'Oswald',sans-serif;
+  font-size:24px;font-weight:600;
+  color:#c8963e;display:block;
+}
+.stat-label{
+  font-size:9px;color:rgba(255,255,255,.4);
+  letter-spacing:1px;display:block;margin-top:4px;
+}
+
+/* ヒーローCTA - 確実に押せるサイズ */
+.hero-cta{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:300px;
+  margin:0 auto;
+}
+.hero-cta a{
+  display:block;
+  padding:18px 20px;
+  text-align:center;
+  font-size:15px;
+  font-weight:700;
+  text-decoration:none;
+  border-radius:4px;
+  cursor:pointer;
+}
+.cta-primary{background:#c8963e;color:white}
+.cta-secondary{
+  background:transparent;
+  color:rgba(255,255,255,.7);
+  border:1px solid rgba(255,255,255,.3);
+}
+
+/* セクション共通 */
+.section{padding:48px 24px;max-width:640px;margin:0 auto}
+.sec-label{
+  font-size:10px;letter-spacing:4px;
+  color:#c8963e;display:block;margin-bottom:8px;
+}
+.sec-heading{
+  font-family:'Oswald',sans-serif;
+  font-size:22px;font-weight:600;
+  color:#1a1a1a;margin-bottom:28px;letter-spacing:1px;
+}
+
+/* CONCEPT */
+.concept-list{display:flex;flex-direction:column;gap:14px}
+.concept-item{
+  background:white;padding:20px;
+  border-left:3px solid #c8963e;
+}
+.concept-item h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.concept-item p{font-size:13px;color:#666;line-height:1.9}
+
+/* MENU */
+.menu-bg{background:#1a1a1a;padding:48px 24px}
+.menu-inner{max-width:640px;margin:0 auto}
+.menu-bg .sec-label{color:#c8963e}
+.menu-bg .sec-heading{color:white}
+.menu-list{display:flex;flex-direction:column;gap:2px}
+.menu-item{
+  background:rgba(255,255,255,.05);
+  padding:18px 16px;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+}
+.menu-name{font-size:14px;font-weight:700;color:white;display:block;margin-bottom:5px}
+.menu-desc{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7}
+.menu-right{text-align:right;flex-shrink:0}
+.menu-price{
+  font-family:'Oswald',sans-serif;
+  font-size:22px;font-weight:600;color:#c8963e;
+}
+.menu-time{font-size:10px;color:rgba(255,255,255,.3);display:block;margin-top:3px}
+.popular{
+  display:inline-block;background:#c8963e;color:white;
+  font-size:9px;padding:2px 7px;margin-bottom:6px;
+}
+
+/* FLOW */
+.flow-list{display:flex;flex-direction:column;gap:0}
+.flow-item{
+  display:flex;gap:16px;
+  padding:20px 0;
+  border-bottom:1px solid #e8e8e8;
+}
+.flow-item:last-child{border-bottom:none}
+.flow-num{
+  width:36px;height:36px;border-radius:50%;
+  background:#1a1a1a;color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;
+  flex-shrink:0;
+}
+.flow-body h3{font-size:14px;font-weight:700;margin-bottom:5px}
+.flow-body p{font-size:13px;color:#666;line-height:1.9}
+
+/* RESERVE */
+.reserve-bg{background:#2a6e3f;padding:48px 24px}
+.reserve-inner{max-width:640px;margin:0 auto}
+.reserve-bg .sec-label{color:rgba(255,255,255,.5)}
+.reserve-bg .sec-heading{color:white}
+.reserve-note{font-size:13px;color:rgba(255,255,255,.7);line-height:2;margin-bottom:20px}
+.reserve-list{display:flex;flex-direction:column;gap:10px}
+.reserve-item{
+  background:rgba(255,255,255,.12);
+  padding:18px 20px;
+  display:flex;align-items:center;gap:16px;
+  text-decoration:none;color:white;
+}
+.r-icon{
+  font-family:'Oswald',sans-serif;
+  font-size:13px;letter-spacing:1px;
+  background:rgba(255,255,255,.2);
+  padding:6px 10px;flex-shrink:0;
+}
+.r-label{font-size:11px;color:rgba(255,255,255,.5);display:block;margin-bottom:4px}
+.r-val{font-size:15px;font-weight:700}
+.r-arrow{margin-left:auto;font-size:20px;opacity:.5}
+
+/* ACCESS */
+.access-list{display:flex;flex-direction:column}
+.access-row{
+  display:flex;gap:16px;
+  padding:14px 0;border-bottom:1px solid #e8e8e8;
+}
+.access-row:last-child{border-bottom:none}
+.access-key{
+  font-size:11px;letter-spacing:2px;color:#c8963e;
+  width:72px;flex-shrink:0;padding-top:2px;
+}
+.access-val{font-size:14px;color:#333;line-height:1.8}
+.map-area{
+  background:#e0e0e0;height:180px;margin-top:20px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:#999;
+}
+
+footer{
+  background:#1a1a1a;padding:28px 20px;text-align:center;
+}
+.footer-logo{
+  font-family:'Oswald',sans-serif;font-size:20px;font-weight:600;
+  letter-spacing:3px;color:rgba(255,255,255,.3);display:block;margin-bottom:6px;
+}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.15)}
+</style>
+</head>
+<body>
+
+<!-- 固定予約バー -->
+<div class="reserve-bar">
+  <a href="tel:xxx-xxxx-xxxx" class="btn-tel">電話で予約</a>
+  <a href="#reserve" class="btn-line">LINEで予約</a>
+  <a href="#reserve" class="btn-web">ネット予約</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">LiLe</a>
+  <ul class="nav-links">
+    <li><a href="#menu">料金</a></li>
+    <li><a href="#flow">流れ</a></li>
+    <li><a href="#reserve">予約</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="top" class="hero">
+  <div class="hero-badge">MEN'S ONLY PRIVATE SALON</div>
+  <h1>LiLe</h1>
+  <span class="hero-sub">門真市 / 男性専用プライベートサロン</span>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="stat-num">5.0</span>
+      <span class="stat-label">Google評価</span>
+    </div>
+    <div class="hero-stat">
+      <span class="stat-num">完全</span>
+      <span class="stat-label">個室・予約制</span>
+    </div>
+    <div class="hero-stat">
+      <span class="stat-num">男性</span>
+      <span class="stat-label">専用サロン</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#reserve" class="cta-primary">今すぐ予約する</a>
+    <a href="#menu" class="cta-secondary">料金を見る</a>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<div class="section">
+  <span class="sec-label">CONCEPT</span>
+  <div class="sec-heading">男性のための、プライベートな空間。</div>
+  <div class="concept-list">
+    <div class="concept-item">
+      <h3>完全個室・完全予約制</h3>
+      <p>他のお客様と顔を合わせることなく、リラックスしてご利用いただけます。</p>
+    </div>
+    <div class="concept-item">
+      <h3>男性専用だから話しやすい</h3>
+      <p>髪や肌のお悩みを気兼ねなくご相談いただけます。男性特有のお悩みに寄り添います。</p>
+    </div>
+    <div class="concept-item">
+      <h3>Google評価 5.0</h3>
+      <p>ご来店いただいたお客様から高い評価をいただいています。初めての方もご安心ください。</p>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="menu-bg" id="menu">
+  <div class="menu-inner">
+    <span class="sec-label">MENU & PRICE</span>
+    <div class="sec-heading">料金メニュー</div>
+    <div class="menu-list">
+      <div class="menu-item">
+        <div>
+          <span class="popular">人気No.1</span>
+          <span class="menu-name">カット</span>
+          <span class="menu-desc">カウンセリングから仕上げまで丁寧に対応。</span>
+        </div>
+        <div class="menu-right">
+          <div class="menu-price">¥3,500</div>
+          <span class="menu-time">45分</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <span class="menu-name">カット + シャンプー</span>
+          <span class="menu-desc">カットと合わせてリフレッシュできるシャンプーセット。</span>
+        </div>
+        <div class="menu-right">
+          <div class="menu-price">¥4,500</div>
+          <span class="menu-time">60分</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <span class="menu-name">カット + カラー</span>
+          <span class="menu-desc">白髪染め・おしゃれ染め対応。ダメージを抑えた施術。</span>
+        </div>
+        <div class="menu-right">
+          <div class="menu-price">¥8,500</div>
+          <span class="menu-time">90分</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <span class="menu-name">ヘッドスパ</span>
+          <span class="menu-desc">頭皮ケアとリラクゼーションを同時に。疲労回復にも。</span>
+        </div>
+        <div class="menu-right">
+          <div class="menu-price">¥3,000</div>
+          <span class="menu-time">30分</span>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <span class="menu-name">シェービング</span>
+          <span class="menu-desc">丁寧な顔そりで清潔感UP。</span>
+        </div>
+        <div class="menu-right">
+          <div class="menu-price">¥2,500</div>
+          <span class="menu-time">30分</span>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,.3);margin-top:14px">※料金はすべて税込です。</p>
+  </div>
+</div>
+
+<!-- FLOW -->
+<div class="section" id="flow">
+  <span class="sec-label">FLOW</span>
+  <div class="sec-heading">ご来店の流れ</div>
+  <div class="flow-list">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-body">
+        <h3>ご予約</h3>
+        <p>電話・LINE・ネット予約のいずれかでご予約ください。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-body">
+        <h3>ご来店・カウンセリング</h3>
+        <p>完全個室でお迎えします。ご要望・お悩みをお気軽にご相談ください。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-body">
+        <h3>施術</h3>
+        <p>ご要望に合わせた施術を丁寧に行います。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">4</div>
+      <div class="flow-body">
+        <h3>お会計・次回予約</h3>
+        <p>次回のご予約もその場で承ります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESERVE -->
+<div class="reserve-bg" id="reserve">
+  <div class="reserve-inner">
+    <span class="sec-label">RESERVATION</span>
+    <div class="sec-heading">ご予約方法</div>
+    <p class="reserve-note">当日予約もお気軽にどうぞ。営業時間内にご連絡ください。</p>
+    <div class="reserve-list">
+      <a href="tel:xxx-xxxx-xxxx" class="reserve-item">
+        <span class="r-icon">TEL</span>
+        <div>
+          <span class="r-label">電話でご予約</span>
+          <span class="r-val">xxx-xxxx-xxxx</span>
+        </div>
+        <span class="r-arrow">›</span>
+      </a>
+      <a href="#" class="reserve-item">
+        <span class="r-icon">LINE</span>
+        <div>
+          <span class="r-label">LINEでご予約</span>
+          <span class="r-val">友だち追加して予約</span>
+        </div>
+        <span class="r-arrow">›</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ACCESS -->
+<div class="section" id="access">
+  <span class="sec-label">ACCESS</span>
+  <div class="sec-heading">アクセス</div>
+  <div class="access-list">
+    <div class="access-row">
+      <span class="access-key">住所</span>
+      <span class="access-val">大阪府門真市（詳細は予約時にお知らせします）</span>
+    </div>
+    <div class="access-row">
+      <span class="access-key">営業時間</span>
+      <span class="access-val">受注後に記載予定</span>
+    </div>
+    <div class="access-row">
+      <span class="access-key">定休日</span>
+      <span class="access-val">受注後に記載予定</span>
+    </div>
+    <div class="access-row">
+      <span class="access-key">駐車場</span>
+      <span class="access-val">受注後に記載予定</span>
+    </div>
+  </div>
+  <div class="map-area">Googleマップ埋め込み予定</div>
+</div>
+
+<footer>
+  <span class="footer-logo">LiLe</span>
+  <div class="footer-copy">© 2026 LiLe Men's Only Salon — Kadoma, Osaka</div>
+</footer>
+
+</body>
+</html>
